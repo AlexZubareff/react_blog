@@ -3,6 +3,9 @@
 export const Message = (props) => {
 
     return <div >
-        <h2>Message through props: {props.textMessage}</h2>
+            {/* <form onSubmit={changeText} className={style.form}>
+            <input type="text" name="text"/>
+            <button>SEND</button>
+        </form> */}
     </div>
 } 
