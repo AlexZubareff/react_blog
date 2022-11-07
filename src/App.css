@@ -10,7 +10,7 @@
 }
 
 .Body {
-  width: 1200px;
+  /* width: 1200px; */
   display: flex;
   flex-direction:row;
   justify-content: left;
@@ -21,14 +21,14 @@
   list-style-type: none;
 }
 
-/* .Left {
+.Left {
   background-color: rgb(192, 192, 204);
-  width: 600px;
+  width: 15%;
   padding: 10px;
-} */
+}
 
 .Right {
-  width: 600px;
+  width: 85%;
   padding: 10px;
 }
 
@@ -67,6 +67,7 @@
   flex: 0 0 auto;
   /* min-height: calc(100vh - 550px); */
 }
+
 
 .App-link {
   color: #61dafb;
