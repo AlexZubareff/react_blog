@@ -64,19 +64,19 @@ export const App = (data) => {
   // //  setTextMessage(messageList)
   // // }, [])
 
-  const startChatList = chat.map((item) => {
-    return <List>
-      <ListItem disablePadding disableMargin>
-        <ListItemButton>{item.name} (id chat: {item.id})</ListItemButton>
-      </ListItem>
-    </List>;
+  const startChatList = chat.map((item, index) => {
+    return <List key={index.toString()}>
+              <ListItem>
+                <ListItemButton >{item.name} (id chat: {item.id})</ListItemButton>
+              </ListItem>
+          </List>;
     
   })
 
-  const startMessageList = textMessage.map((item) => {
-    return <ul className='list'>
-      <li><h3>Author: {item.name}</h3></li>
-      <li>Text: {item.text}</li>
+  const startMessageList = textMessage.map((item, index) => {
+    return <ul key={index.toString()} className='list'>
+      <li><h4>{item.name}:</h4>{item.text}</li>
+      {/* <li>Text: {item.text}</li> */}
     </ul>;
     
   })
@@ -97,7 +97,7 @@ export const App = (data) => {
 
           </div> 
         <footer className='App-footer'>
-          <FormSendMessage Message = {textMessage} handleSendMessage = {setTextMessage}/>
+          <FormSendMessage Message = {textMessage} handleSendMessage = {setTextMessage} />
         </footer>
         
       </div> 
