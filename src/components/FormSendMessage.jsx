@@ -2,10 +2,12 @@ import { useEffect, useState, useRef } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
+import {nanoid} from 'nanoid';
 
-export const FormSendMessage = ({Message, handleSendMessage}) => {
 
-    console.log(Message)
+export const FormSendMessage = ({Chat, handleSendMessage}) => {
+
+    console.log(Chat)
 
     const inputRef = useRef(null)
 
@@ -19,12 +21,17 @@ export const FormSendMessage = ({Message, handleSendMessage}) => {
 
         ev.preventDefault()
         const newMessage = {
-            name: ev.target.form.author.value,
-            text: ev.target.form.text.value
+            nameChat: 'Chat_2',
+            from: ev.target.form.author.value,
+            too:'Mike',
+            message: ev.target.form.text.value,
+            date: new Date().toLocaleTimeString(),
+            id: nanoid()
           }
           console.log(newMessage)
 
-        handleSendMessage([... Message, newMessage])  
+        handleSendMessage([...Chat, newMessage])  
+        
         }
   
 
