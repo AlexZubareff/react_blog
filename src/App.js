@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { Message } from './components/Message';
+import { FormSendMessage } from './components/FormSendMessage';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+
 
 
 
 
 export const App = (data) => {
-
-  
 
   const messageList = [
     {
@@ -30,34 +33,50 @@ export const App = (data) => {
 
   const [textMessage, setTextMessage] = useState(messageList);
 
-    function sendText(ev) {
-        ev.preventDefault()
-        const newMessage = {
-          name: ev.target.elements.author.value,
-          text: ev.target.elements.text.value
-        }
-        console.log(newMessage)
-        setTextMessage([...textMessage, newMessage])
-        console.log(ev.target.elements.text.value)
-    }
+
+  const chatList = [
+    {
+      name: 'Alex',
+      id: '1'
+    },
+    {
+      name: 'Mike',
+      id: '2'    },
+    {
+      name: 'Nike',
+      id: '3'    },
+    {
+      name: 'Elena',
+      id: '4'    },
+  ]
+
+  const [chat, setChat] = useState(chatList);
 
 
-  // useEffect((data) => {
-  //   const newMessage = {
-  //     name: 'Bot',
-  //     text: 'Hello, guest!'
-  //   }
+  // // useEffect((data) => {
+  // //   const newMessage = {
+  // //     name: 'Bot',
+  // //     text: 'Hello, guest!'
+  // //   }
     
-  //   setTextMessage([...textMessage, newMessage])
-  //   console.log(textMessage)
-  //  setTextMessage(messageList)
-  // }, [])
+  // //   setTextMessage([...textMessage, newMessage])
+  // //   console.log(textMessage)
+  // //  setTextMessage(messageList)
+  // // }, [])
 
+  const startChatList = chat.map((item, index) => {
+    return <List key={index.toString()}>
+              <ListItem>
+                <ListItemButton >{item.name} (id chat: {item.id})</ListItemButton>
+              </ListItem>
+          </List>;
+    
+  })
 
-  const res = textMessage.map((item) => {
-    return <ul className='list'>
-      <li><h3>Author: {item.name}</h3></li>
-      <li>Text: {item.text}</li>
+  const startMessageList = textMessage.map((item, index) => {
+    return <ul key={index.toString()} className='list'>
+      <li><h4>{item.name}:</h4>{item.text}</li>
+      {/* <li>Text: {item.text}</li> */}
     </ul>;
     
   })
@@ -65,21 +84,24 @@ export const App = (data) => {
   return (
       <div className="App">
         <header className='App-header '>BLOG</header>
-        <div className='Body'>
-        
-        </div> 
-          <Message className="Right"/>
-          {res}
+
+          <div className='Body'>
+            <div className='Left'>
+            {startChatList}
+            </div>
+
+            <div className='Right'>
+              {/* <Message className="Right"/> */}
+              {startMessageList}
+            </div>
+
+          </div> 
         <footer className='App-footer'>
-        <form onSubmit={sendText}>
-        <input type="text" name="author" placeholder='Name'></input>
-        <input type="text" name="text" placeholder='Message'></input>
-        <button >SEND</button>
-        </form>
-        
+          <FormSendMessage Message = {textMessage} handleSendMessage = {setTextMessage} />
         </footer>
+        
       </div> 
   );
 }
 
-export default App; 
+export default App;
