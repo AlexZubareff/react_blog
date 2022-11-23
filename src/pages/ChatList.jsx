@@ -22,6 +22,7 @@ const [nameChat, setNameChat] = useState('');
         addChat([...chats, 
           {
             nameChat,
+            message: [],
             date: new Date().toLocaleTimeString(),
             id: nanoid()
           }
