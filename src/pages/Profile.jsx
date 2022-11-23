@@ -12,8 +12,8 @@ export const Profile = () => {
 
     return (<>
     <h3>Profile</h3>
-    {state.checked && <p>{state.name}</p>}
     <input type="checkbox" onClick={handleClick} name="mem" id="mem"/>
+    {state.checked && <span>{state.text}</span>}
     </>
     )
 

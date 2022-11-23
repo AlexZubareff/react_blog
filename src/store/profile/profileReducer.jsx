@@ -2,7 +2,7 @@ import { TOGGLE_CHECKBOX } from "./actionsProfile";
 
 const initialState = {
     checked: false,
-    name: "Checked"
+    text: "Checked"
 };
 
 export const profileReducer = (state = initialState, action) => {
