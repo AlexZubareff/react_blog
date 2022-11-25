@@ -1,13 +1,13 @@
-import { useEffect, useState, useRef } from 'react';
+/* import { useEffect, useState, useRef } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 import {nanoid} from 'nanoid';
 
-
+ */
 export const FormSendMessage = ({Chat, handleSendMessage}) => {
 
-    console.log(Chat)
+/*     console.log(Chat)
 
     const inputRef = useRef(null)
 
@@ -33,7 +33,7 @@ export const FormSendMessage = ({Chat, handleSendMessage}) => {
         handleSendMessage([...Chat, newMessage])  
         
         }
-  
+ */  
 
     
         // function sendText(ev) {
@@ -49,12 +49,12 @@ export const FormSendMessage = ({Chat, handleSendMessage}) => {
 
 
     return <>
-    <form >
+{/*     <form >
         <input  className = "Input" type="text" name="author" placeholder='Name' />
         <input  ref={inputRef} className = "Input" type="text" name="text" placeholder='Message' />
         <Button onClick={handleSend} variant="contained" size="small">SEND</Button>
     </form>
-    {/* <form onSubmit={handleSend}>
+ */}    {/* <form onSubmit={handleSend}>
         <Input  className = "Input" type="text" name="author" placeholder='Name' />
         <Input  ref={inputRef} className = "Input" type="text" name="text" placeholder='Message' />
         <Button variant="contained" size="large">SEND</Button>
