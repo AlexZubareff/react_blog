@@ -19,7 +19,7 @@ const [nameChat, setNameChat] = useState('');
     ev.preventDefault()
 
        if (nameChat) {
-        addChat([...chats, 
+        addChat((prevChats) => [...prevChats, 
           {
             nameChat,
             message: [],
@@ -31,13 +31,16 @@ const [nameChat, setNameChat] = useState('');
        }
     }
 
+    
 
 
     return <>
       {chats.map((item, index) => (
         <List key={index} className = "ChatList">
-            <ListItemButton><Link to={`/chats/${index}`}>{item.nameChat}({index})</Link></ListItemButton>
+            {/* <ListItemButton><Link to={`/chats/${index}`}>{item.nameChat}({index})</Link></ListItemButton> */}
             <ListItemButton to={`/chats/${index}`}>{item.nameChat}({index})</ListItemButton>
+            <Button type="submit" variant="contained" size="small">DELETE CHAT: {item.nameChat}</Button>
+
 
             {/* <ListItem>{item.nameChat}({item.id})</ListItem> */}
             {/* <ListItem>{item.date}</ListItem> */}
