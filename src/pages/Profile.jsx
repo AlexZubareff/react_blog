@@ -1,10 +1,13 @@
 import { useDispatch, useSelector } from "react-redux"
 import { toggleCheckbox } from "../store/profile/actionsProfile";
+import { selectChecked, selectText } from "../store/profile/profileSelectors";
 
 export const Profile = () => {
     const dispatch = useDispatch();
-    const state = useSelector((state) => state);
-    console.log(state);
+    const checked = useSelector(selectChecked);
+    const text = useSelector(selectText);
+
+
     const handleClick = () => {
         dispatch(toggleCheckbox);
     }
@@ -13,7 +16,7 @@ export const Profile = () => {
     return (<>
     <h3>Profile</h3>
     <input type="checkbox" onClick={handleClick} name="mem" id="mem"/>
-    {state.checked && <span>{state.text}</span>}
+    {checked && <span>{text}</span>}
     </>
     )
 

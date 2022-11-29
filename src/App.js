@@ -7,7 +7,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
  */
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Provider } from "react-redux"
+import { Provider, useDispatch, useSelector } from "react-redux"
 import { store } from './store/store';
 import { NavBar } from './components/NavBar';
 import { Home } from './pages/Home';
@@ -197,6 +197,8 @@ export const App = (data) => {
         },
       ]
 
+      // const chats = useSelector(state => state.chats);
+      // const dispatch = useDispatch();
 
       const [chats, setChat] = useState(chatsList);
       console.log(chats);

@@ -1,33 +1,34 @@
 import '../App.css';
-import { useEffect, useState } from 'react';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import { ListItemButton } from '@mui/material';
 import Button from '@mui/material/Button';
 import { nanoid } from 'nanoid';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectChats } from '../store/chat/chatSelectors';
+import { ADD_CHAT } from '../store/chat/actionsChatList';
 
 
 
-export const ChatList = ({chats, addChat}) => {
+export const ChatList = () => {
 
-  // console.log(ChatList);
-const [nameChat, setNameChat] = useState('');
+  const chats_1 = useSelector(selectChats);
+  const dispatch = useDispatch();
+  console.log(chats_1);
+  
+// const [nameChat, setNameChat] = useState('');
 
-  const onAddChat = (ev) => {
+  const onSubmit = (ev) => {
+  
+    const value = ev.target.nameChat.value;
 
     ev.preventDefault()
 
-       if (nameChat) {
-        addChat((prevChats) => [...prevChats, 
-          {
-            nameChat,
-            message: [],
-            date: new Date().toLocaleTimeString(),
-            id: nanoid()
-          }
-        ]);
-        setNameChat('');   
+    if (value) {
+        dispatch
+        ({
+          type: ADD_CHAT,
+          payload: value,
+        });
        }
     }
 
@@ -35,7 +36,7 @@ const [nameChat, setNameChat] = useState('');
 
 
     return <>
-      {chats.map((item, index) => (
+      {chats_1.map((item, index) => (
         <List key={index} className = "ChatList">
             {/* <ListItemButton><Link to={`/chats/${index}`}>{item.nameChat}({index})</Link></ListItemButton> */}
             <ListItemButton to={`/chats/${index}`}>{item.nameChat}({index})</ListItemButton>
@@ -47,8 +48,8 @@ const [nameChat, setNameChat] = useState('');
         </List>
         
       ))}
-      <form onSubmit={onAddChat}>
-        <input  className = "Input" type="text" name="nameChat" placeholder='Enter chat name' value={nameChat} onChange={(e)=>setNameChat(e.target.value)} />
+      <form onSubmit={onSubmit}>
+        <input  className = "Input" type="text" name="nameChat" placeholder='Enter chat name'  />
         <Button type="submit" variant="contained" size="small">ADD CHAT</Button>
     </form>
   </>
