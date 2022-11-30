@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectChats } from '../store/chat/chatSelectors';
-import { ADD_CHAT } from '../store/chat/actionsChatList';
+import { ADD_CHAT, DEL_CHAT } from '../store/chat/actionsChatList';
 
 
 
@@ -32,6 +32,15 @@ export const ChatList = () => {
        }
     }
 
+  const deleteChat = (index) => {
+    console.log(index);
+
+    dispatch({
+      type: DEL_CHAT,
+      payload: index,
+    });
+  }  
+
     
 
 
@@ -40,7 +49,7 @@ export const ChatList = () => {
         <List key={index} className = "ChatList">
             {/* <ListItemButton><Link to={`/chats/${index}`}>{item.nameChat}({index})</Link></ListItemButton> */}
             <ListItemButton to={`/chats/${index}`}>{item.nameChat}({index})</ListItemButton>
-            <Button type="submit" variant="contained" size="small">DELETE CHAT: {item.nameChat}</Button>
+            <Button type="submit" onClick={() => deleteChat(index)} variant="contained" size="small">DELETE CHAT: {item.nameChat}</Button>
 
 
             {/* <ListItem>{item.nameChat}({item.id})</ListItem> */}
