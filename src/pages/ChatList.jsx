@@ -5,62 +5,53 @@ import Button from '@mui/material/Button';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectChats } from '../store/chat/chatSelectors';
-import { ADD_CHAT, DEL_CHAT } from '../store/chat/actionsChatList';
+import { addChat, deleteChat } from '../store/chat/actionsChatList';
 
 
 
 export const ChatList = () => {
 
-  const chats_1 = useSelector(selectChats);
+  const chats = useSelector(selectChats);
   const dispatch = useDispatch();
-  console.log(chats_1);
-  
-// const [nameChat, setNameChat] = useState('');
+  console.log(chats);
+
 
   const onSubmit = (ev) => {
-  
+
     const value = ev.target.nameChat.value;
+    const newChat = {
+      nameChat: ev.target.nameChat.value,
+      message: [],
+      date: new Date().toLocaleTimeString(),
+      id: nanoid()
+    };
+    console.log(newChat);
 
     ev.preventDefault()
 
     if (value) {
-        dispatch
-        ({
-          type: ADD_CHAT,
-          payload: value,
-        });
-       }
+      dispatch(addChat(newChat));
     }
+  }
 
-  const deleteChat = (index) => {
+  const delChat = (index) => {
     console.log(index);
 
-    dispatch({
-      type: DEL_CHAT,
-      payload: index,
-    });
-  }  
+    dispatch(deleteChat(index));
+  }
 
-    
+  return <>
+    {chats.map((item, index) => (
+      <List key={index} className="ChatList">
+        <ListItemButton to={`/chats/${index}`}>{item.nameChat}({index})</ListItemButton>
+        <Button type="submit" onClick={() => delChat(index)} variant="contained" size="small">DELETE CHAT: {item.nameChat}</Button>
+      </List>
 
-
-    return <>
-      {chats_1.map((item, index) => (
-        <List key={index} className = "ChatList">
-            {/* <ListItemButton><Link to={`/chats/${index}`}>{item.nameChat}({index})</Link></ListItemButton> */}
-            <ListItemButton to={`/chats/${index}`}>{item.nameChat}({index})</ListItemButton>
-            <Button type="submit" onClick={() => deleteChat(index)} variant="contained" size="small">DELETE CHAT: {item.nameChat}</Button>
-
-
-            {/* <ListItem>{item.nameChat}({item.id})</ListItem> */}
-            {/* <ListItem>{item.date}</ListItem> */}
-        </List>
-        
-      ))}
-      <form onSubmit={onSubmit}>
-        <input  className = "Input" type="text" name="nameChat" placeholder='Enter chat name'  />
-        <Button type="submit" variant="contained" size="small">ADD CHAT</Button>
+    ))}
+    <form onSubmit={onSubmit}>
+      <input className="Input" type="text" name="nameChat" placeholder='Enter chat name' />
+      <Button type="submit" variant="contained" size="small">ADD CHAT</Button>
     </form>
   </>
-    
+
 }

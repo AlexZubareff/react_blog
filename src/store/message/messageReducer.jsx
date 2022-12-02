@@ -1,7 +1,8 @@
-import { ADD_CHAT, DEL_CHAT } from "./actionsChatList";
+
+import { useParams } from "react-router-dom";
+import { ADD_MESSAGE, DEL_MESSAGE, SHOW_MESSAGE } from "./messageActions";
 import { nanoid } from 'nanoid';
-import { ActionTypes } from "@mui/base";
-import { Action } from "@remix-run/router";
+
 
 const initialState = [{
     nameChat: 'Chat_1',
@@ -155,17 +156,21 @@ const initialState = [{
     ],          date: new Date().toLocaleTimeString(),
     id: nanoid()
   },];
+export const messageReducer = (state = initialState, {type, payload, index}) => {
 
-export const chatsListReducer = (state = initialState, {type, payload}) => {
+    
     switch (type) {
-        case ADD_CHAT: {
-            return [...state, payload] 
+        case SHOW_MESSAGE: {
+            return state.message[payload].message;
         }
-        case DEL_CHAT: {
+        case ADD_MESSAGE: {
+            return [...state, state[index].message.push(payload)]; 
+        }
+        case DEL_MESSAGE: {
             return state.filter((state, index) => index !== payload)
         }
 
         default:
             return state;
     }
-};
+}

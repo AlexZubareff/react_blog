@@ -1,11 +1,4 @@
-import { useState } from 'react';
 import './App.css';
-/* import { Message } from './components/Message';
-import { FormSendMessage } from './components/FormSendMessage';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
- */
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider, useDispatch, useSelector } from "react-redux"
 import { store } from './store/store';
@@ -15,7 +8,6 @@ import { Profile } from './pages/Profile';
 import { NoRoute } from './pages/NoRoute';
 import { ChatList } from './pages/ChatList';
 import { Chat } from './pages/Chat';
-import { nanoid } from 'nanoid';
 
 
 export const App = (data) => {
@@ -42,166 +34,166 @@ export const App = (data) => {
   // const [textMessage, setTextMessage] = useState(messageList);
 
 
-      const chatsList = [
-        {
-          nameChat: 'Chat_1',
-          message: [
-            {
-              from: 'Alex',
-              too:'Mike',
-              text: 'first message from Alex.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Mike',
-              too:'Alex',
-              text: 'first message from Mike.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Alex',
-              too:'Mike',
-              text: 'second message from Alex.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Mike',
-              too:'Alex',
-              text: 'second message from Mike.',
-              date: new Date().toLocaleTimeString(),
-            },
-          ],
-          date: new Date().toLocaleTimeString(),
-          id: nanoid()
-        },
-        {
-          nameChat: 'Chat_1',
-          message: [
-            {
-              from: 'Alex',
-              too:'Mike',
-              text: 'first message from Alex.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Mike',
-              too:'Alex',
-              text: 'first message from Mike.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Alex',
-              too:'Mike',
-              text: 'second message from Alex.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Mike',
-              too:'Alex',
-              text: 'second message from Mike.',
-              date: new Date().toLocaleTimeString(),
-            },
-          ],
-          date: new Date().toLocaleTimeString(),
-          id: nanoid()
-        },
-        {
-          nameChat: 'Chat_2',
-          message: [
-            {
-              from: 'Alex',
-              too:'Mike',
-              text: 'first message from Alex.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Mike',
-              too:'Alex',
-              text: 'first message from Mike.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Alex',
-              too:'Mike',
-              text: 'second message from Alex.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Mike',
-              too:'Alex',
-              text: 'second message from Mike.',
-              date: new Date().toLocaleTimeString(),
-            },
-          ],          date: new Date().toLocaleTimeString(),
-          id: nanoid()
-        },
-        {
-          nameChat: 'Chat_3',
-          message: [
-            {
-              from: 'Alex',
-              too:'Mike',
-              text: 'first message from Alex.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Mike',
-              too:'Alex',
-              text: 'first message from Mike.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Alex',
-              too:'Mike',
-              text: 'second message from Alex.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Mike',
-              too:'Alex',
-              text: 'second message from Mike.',
-              date: new Date().toLocaleTimeString(),
-            },
-          ],          date: new Date().toLocaleTimeString(),
-          id: nanoid()
-        },
-        {
-          nameChat: 'Chat_4',
-          message: [
-            {
-              from: 'Alex',
-              too:'Mike',
-              text: 'first message from Alex.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Mike',
-              too:'Alex',
-              text: 'first message from Mike.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Alex',
-              too:'Mike',
-              text: 'second message from Alex.',
-              date: new Date().toLocaleTimeString(),
-            },
-            {
-              from: 'Mike',
-              too:'Alex',
-              text: 'second message from Mike.',
-              date: new Date().toLocaleTimeString(),
-            },
-          ],          date: new Date().toLocaleTimeString(),
-          id: nanoid()
-        },
-      ]
+      // const chatsList = [
+      //   {
+      //     nameChat: 'Chat_1',
+      //     message: [
+      //       {
+      //         from: 'Alex',
+      //         too:'Mike',
+      //         text: 'first message from Alex.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Mike',
+      //         too:'Alex',
+      //         text: 'first message from Mike.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Alex',
+      //         too:'Mike',
+      //         text: 'second message from Alex.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Mike',
+      //         too:'Alex',
+      //         text: 'second message from Mike.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //     ],
+      //     date: new Date().toLocaleTimeString(),
+      //     id: nanoid()
+      //   },
+      //   {
+      //     nameChat: 'Chat_1',
+      //     message: [
+      //       {
+      //         from: 'Alex',
+      //         too:'Mike',
+      //         text: 'first message from Alex.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Mike',
+      //         too:'Alex',
+      //         text: 'first message from Mike.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Alex',
+      //         too:'Mike',
+      //         text: 'second message from Alex.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Mike',
+      //         too:'Alex',
+      //         text: 'second message from Mike.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //     ],
+      //     date: new Date().toLocaleTimeString(),
+      //     id: nanoid()
+      //   },
+      //   {
+      //     nameChat: 'Chat_2',
+      //     message: [
+      //       {
+      //         from: 'Alex',
+      //         too:'Mike',
+      //         text: 'first message from Alex.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Mike',
+      //         too:'Alex',
+      //         text: 'first message from Mike.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Alex',
+      //         too:'Mike',
+      //         text: 'second message from Alex.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Mike',
+      //         too:'Alex',
+      //         text: 'second message from Mike.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //     ],          date: new Date().toLocaleTimeString(),
+      //     id: nanoid()
+      //   },
+      //   {
+      //     nameChat: 'Chat_3',
+      //     message: [
+      //       {
+      //         from: 'Alex',
+      //         too:'Mike',
+      //         text: 'first message from Alex.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Mike',
+      //         too:'Alex',
+      //         text: 'first message from Mike.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Alex',
+      //         too:'Mike',
+      //         text: 'second message from Alex.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Mike',
+      //         too:'Alex',
+      //         text: 'second message from Mike.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //     ],          date: new Date().toLocaleTimeString(),
+      //     id: nanoid()
+      //   },
+      //   {
+      //     nameChat: 'Chat_4',
+      //     message: [
+      //       {
+      //         from: 'Alex',
+      //         too:'Mike',
+      //         text: 'first message from Alex.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Mike',
+      //         too:'Alex',
+      //         text: 'first message from Mike.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Alex',
+      //         too:'Mike',
+      //         text: 'second message from Alex.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //       {
+      //         from: 'Mike',
+      //         too:'Alex',
+      //         text: 'second message from Mike.',
+      //         date: new Date().toLocaleTimeString(),
+      //       },
+      //     ],          date: new Date().toLocaleTimeString(),
+      //     id: nanoid()
+      //   },
+      // ]
 
       // const chats = useSelector(state => state.chats);
       // const dispatch = useDispatch();
 
-      const [chats, setChat] = useState(chatsList);
-      console.log(chats);
+      // const [chats, setChat] = useState(chatsList);
+      // console.log(chats);
 
   // // useEffect((data) => {
   // //   const newMessage = {
@@ -268,8 +260,8 @@ export const App = (data) => {
 
                   <Route path="chats" >
                       {/* <Route path=":chatId" element={ <Chat /> } /> */}
-                      <Route index element={ <ChatList chats = {chats} addChat = {setChat}/> } />
-                      <Route path=":chatId" element={ <Chat chat = {chats} addChats = {setChat}/> } />
+                      <Route index element={ <ChatList/> } />
+                      <Route path=":chatId" element={ <Chat /> } />
                   </Route>
                   <Route exact path="/profile" element = { <Profile />} />
                   <Route path="*" element = { <NoRoute />} />
