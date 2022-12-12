@@ -1,13 +1,14 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider, useDispatch, useSelector } from "react-redux"
-import { store } from './store/store';
+import { persistor, store } from './store/store';
 import { NavBar } from './components/NavBar';
 import { Home } from './pages/Home';
 import { Profile } from './pages/Profile';
 import { NoRoute } from './pages/NoRoute';
 import { ChatList } from './pages/ChatList';
 import { Chat } from './pages/Chat';
+import { PersistGate } from 'redux-persist/integration/react';
 
 
 export const App = (data) => {
@@ -241,7 +242,8 @@ export const App = (data) => {
 
 
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
+      // <PersistGate persistor={persistor}>
           <BrowserRouter>
           <div className="App">
         <header className='App-header '>BLOG</header>
@@ -277,8 +279,8 @@ export const App = (data) => {
         </footer>
       </div> 
     </BrowserRouter>
-
-    </Provider>
+    /* </PersistGate> */
+    /* </Provider> */
   );
 }
 
