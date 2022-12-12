@@ -4,6 +4,7 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import { persistReducer, persistStore } from "redux-persist";
 import storage  from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
+import { articlesReducer } from "./articles/articlesReducer";
 import { chatsListReducer } from "./chat/chatListReducer";
 import { profileReducer } from "./profile/profileReducer";
 // import { messageReducer } from "./message/messageReducer";
@@ -16,6 +17,7 @@ storage,
 const rootReducer = combineReducers({
     profile: profileReducer,
     chats: chatsListReducer,
+    articles: articlesReducer,
     // message: messageReducer,
 });
 

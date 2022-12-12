@@ -1,14 +1,12 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Provider, useDispatch, useSelector } from "react-redux"
-import { persistor, store } from './store/store';
 import { NavBar } from './components/NavBar';
 import { Home } from './pages/Home';
 import { Profile } from './pages/Profile';
 import { NoRoute } from './pages/NoRoute';
 import { ChatList } from './pages/ChatList';
 import { Chat } from './pages/Chat';
-import { PersistGate } from 'redux-persist/integration/react';
+import { Articles } from './pages/Articles';
 
 
 export const App = (data) => {
@@ -266,6 +264,8 @@ export const App = (data) => {
                       <Route path=":chatId" element={ <Chat /> } />
                   </Route>
                   <Route exact path="/profile" element = { <Profile />} />
+                  <Route exact path="/articles" element = { <Articles />} />
+
                   <Route path="*" element = { <NoRoute />} />
 
                 
