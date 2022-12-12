@@ -3,15 +3,16 @@ import List from '@mui/material/List';
 import { ListItemButton } from '@mui/material';
 import Button from '@mui/material/Button';
 import { nanoid } from 'nanoid';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectChats } from '../store/chat/chatSelectors';
-import { addChat, deleteChat } from '../store/chat/actionsChatList';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { selectChats } from '../store/chat/chatListSelectors';
+import { addChat, deleteChat } from '../store/chat/chatListActions';
+import { showMessages } from '../store/message/messageActions';
 
 
 
 export const ChatList = () => {
 
-  const chats = useSelector(selectChats);
+  const chats = useSelector(selectChats, shallowEqual);
   const dispatch = useDispatch();
   console.log(chats);
 
@@ -43,7 +44,7 @@ export const ChatList = () => {
   return <>
     {chats.map((item, index) => (
       <List key={index} className="ChatList">
-        <ListItemButton to={`/chats/${index}`}>{item.nameChat}({index})</ListItemButton>
+        <ListItemButton to={`/chats/${index}`} >{item.nameChat}({index})</ListItemButton>
         <Button type="submit" onClick={() => delChat(index)} variant="contained" size="small">DELETE CHAT: {item.nameChat}</Button>
       </List>
 

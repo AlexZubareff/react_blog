@@ -156,12 +156,19 @@ const initialState = [{
     ],          date: new Date().toLocaleTimeString(),
     id: nanoid()
   },];
+
+// const initialState = [];
+
 export const messageReducer = (state = initialState, {type, payload, index}) => {
 
     
     switch (type) {
         case SHOW_MESSAGE: {
-            return state.message[payload].message;
+          //   return [...state, state[payload].message];
+          console.log(state[payload].message);
+          return [...state];
+
+
         }
         case ADD_MESSAGE: {
             return [...state, state[index].message.push(payload)]; 
