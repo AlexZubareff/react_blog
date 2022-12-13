@@ -6,7 +6,6 @@ import { nanoid } from 'nanoid';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { selectChats } from '../store/chat/chatListSelectors';
 import { addChat, deleteChat } from '../store/chat/chatListActions';
-import { showMessages } from '../store/message/messageActions';
 
 
 
