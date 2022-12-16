@@ -1,26 +1,30 @@
-import { useRef, useEffect, useMemo } from "react";
+import { useRef, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { selectChats, selectMessages } from "../store/chat/chatListSelectors";
 
 import { addMessages, deleteMessages, showMessages } from "../store/chat/chatListActions";
+import { snapshot, onValue } from "firebase/database";
+import { getMsgsRefById } from "../services/firebase";
 
 
 
 
 
 export const Chat = () => {
+ 
+    const [messages, setMessages] = useState([]);
 
     // const chatMessages = useSelector(selectMessages);
     const { chatId } = useParams();
     const getMessages = useMemo(()=>selectMessages(chatId));
-    const chat = useSelector(getMessages, shallowEqual);
+    // const chat = useSelector(getMessages, shallowEqual);
     const dispatch = useDispatch();
     const inputRef = useRef(null)
     
     console.log(chatId);
-    console.log(chat);
+    console.log(messages);
 
     useEffect(() => {
         inputRef.current?.focus();
@@ -40,24 +44,36 @@ export const Chat = () => {
         console.log(chatId);
         console.log(newMessage);
 
-        dispatch(addMessages(newMessage, chatId));
-
-
+        // dispatch(addMessages(newMessage, chatId));
     }
 
+    
     const delMessage = (indexMsg) => {
         console.log(indexMsg);
     
         dispatch(deleteMessages(chatId, indexMsg));
     }
+
+    useEffect(() => {
+        const unsubscribe = onValue(getMsgsRefById(chatId), (snapshot) => {
+            console.log(chatId);
+            console.log(snapshot.val());
+
+            if (!snapshot.val()?.exist) {
+                setMessages(null);
+            }
+        });
+        return unsubscribe;
+    }, [chatId]);
+
     
-    console.log(chat);
-    console.log(chat.message);
+    console.log(messages);
+    // console.log(chat.message);
 
     return <>
-        <h4>{chat.nameChat}</h4>
+        <h4>{messages.nameChat}</h4>
 
-        {chat.message.map((item, indexMsg) =>
+        {messages.map((item, indexMsg) =>
             <ul key={indexMsg}>
                 <li>
                     {indexMsg}

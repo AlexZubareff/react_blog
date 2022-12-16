@@ -7,7 +7,6 @@ import {
 } from "firebase/auth";
 import { getDatabase, ref } from 'firebase/database';
 
-
 const firebaseConfig = {
     apiKey: "AIzaSyCeDfLJ8E3-lma6yg7XXByOoLjykznwBKo",
     authDomain: "react2022-a1969.firebaseapp.com",
@@ -35,3 +34,10 @@ export const logOut = async () => {
 };
 
 export const userRef = ref(db, "user");
+export const userCheckedRef = ref(db, "user/checked");
+export const chatsRef = ref(db, "chats");
+export const getChatRefById = (id) => ref(db, `chats/${id}`);
+export const msgsRef = ref(db, "messages");
+export const getMsgsRefById = (chatId) => ref(db, `messages/${chatId}`);
+export const getMsgsListRefById = (chatId) => ref(db, `messages/${chatId}/messageList`);
+
