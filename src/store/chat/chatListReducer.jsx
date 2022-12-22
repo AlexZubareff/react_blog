@@ -1,7 +1,5 @@
 import { ADD_CHAT, ADD_MESSAGE, DEL_CHAT, DEL_MESSAGE } from "./chatListActions";
 import { nanoid } from 'nanoid';
-import { ActionTypes } from "@mui/base";
-import { Action } from "@remix-run/router";
 
 const initialState = [{
   nameChat: 'Chat_1',

@@ -1,26 +1,32 @@
-import { useRef, useEffect, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useRef, useEffect, useMemo, useState } from "react";
+import { nanoid } from 'nanoid';
+
+import { Navigate, useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { selectChats, selectMessages } from "../store/chat/chatListSelectors";
 
 import { addMessages, deleteMessages, showMessages } from "../store/chat/chatListActions";
+import { snapshot, onValue, set, push, remove, onChildChanged, onChildAdded } from "firebase/database";
+import { getMsgsListRefById, getMsgsRefById } from "../services/firebase";
 
 
 
 
 
 export const Chat = () => {
+ 
+    const [messages, setMessages] = useState([]);
 
     // const chatMessages = useSelector(selectMessages);
     const { chatId } = useParams();
     const getMessages = useMemo(()=>selectMessages(chatId));
-    const chat = useSelector(getMessages, shallowEqual);
+    // const chat = useSelector(getMessages, shallowEqual);
     const dispatch = useDispatch();
     const inputRef = useRef(null)
     
     console.log(chatId);
-    console.log(chat);
+    console.log(messages);
 
     useEffect(() => {
         inputRef.current?.focus();
@@ -35,32 +41,63 @@ export const Chat = () => {
             from: ev.target.form.author.value,
             too: 'Mike',
             text: ev.target.form.text.value,
+            id: "msg-" + nanoid(),
             date: new Date().toLocaleTimeString(),
         }
+
         console.log(chatId);
         console.log(newMessage);
 
-        dispatch(addMessages(newMessage, chatId));
+        push(getMsgsListRefById(chatId), newMessage);
 
-
+        // dispatch(addMessages(newMessage, chatId));
     }
 
-    const delMessage = (indexMsg) => {
-        console.log(indexMsg);
     
-        dispatch(deleteMessages(chatId, indexMsg));
-    }
+    const delMessage = (id) => {
+        console.log(id);
+        console.log(chatId);
+
     
-    console.log(chat);
-    console.log(chat.message);
+        // dispatch(deleteMessages(chatId, indexMsg));
+
+        remove(getMsgsListRefById(chatId)) ; 
+
+    };
+
+    useEffect(() => {
+        const unsubscribe = onValue(getMsgsRefById(chatId), (snapshot) => {
+            console.log(chatId);
+            console.log(snapshot.val());
+            const val = snapshot.val();
+
+            if (!snapshot.val()?.exist) {
+                setMessages(null); 
+            } else {
+                console.log(val.messageList);
+                setMessages(Object.values(val.messageList) || {});
+            }
+        });
+        return unsubscribe;
+    }, [chatId]);
+
+
+
+
+    if (!messages) {
+        return <Navigate to="/chats" replace />
+    };
+
+    console.log(messages);
+    // console.log(chat.message);
 
     return <>
-        <h4>{chat.nameChat}</h4>
+        <h4>{messages.nameChat}</h4>
 
-        {chat.message.map((item, indexMsg) =>
-            <ul key={indexMsg}>
+        {messages.map((item) =>
+            <ul key={item.id}>
                 <li>
-                    {indexMsg}
+                    {item.id}
                 </li>
                 <li>
                     {item.from}
@@ -72,7 +109,7 @@ export const Chat = () => {
                     {item.date}
                 </li>
 
-                <Button type="submit" onClick={() => delMessage(indexMsg)} variant="contained" size="small">DELETE MSG: {indexMsg}</Button>
+                <Button type="submit" onClick={() => delMessage(item.id)} variant="contained" size="small">DELETE MSG: {item.id}</Button>
             </ul>
             
         )}
