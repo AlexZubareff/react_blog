@@ -29,7 +29,7 @@ export const ChatList = () => {
       nameChat: ev.target.nameChat.value,
       // message: [],
       date: new Date().toLocaleTimeString(),
-      id: nanoid()
+      id: "chat-" + nanoid(),
     };
     console.log(newChat);
 
@@ -46,7 +46,7 @@ export const ChatList = () => {
     console.log(id);
     console.log(id);
 
-    remove(getChatRefById(id));
+    remove(getChatRefById(id)); 
     set(getMsgsRefById(id), null);
 
     console.log(chats);
