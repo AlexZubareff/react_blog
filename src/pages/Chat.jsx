@@ -22,7 +22,7 @@ export const Chat = () => {
     const { chatId } = useParams();
     const getMessages = useMemo(()=>selectMessages(chatId));
     // const chat = useSelector(getMessages, shallowEqual);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const inputRef = useRef(null)
     
     console.log(chatId);
