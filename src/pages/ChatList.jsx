@@ -16,7 +16,7 @@ export const ChatList = () => {
 
   const [chats, setChats] = useState([]);
   // const chats = useSelector(selectChats, shallowEqual);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   console.log(chats);
 
 
